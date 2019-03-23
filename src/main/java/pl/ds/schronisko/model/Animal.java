@@ -8,7 +8,6 @@ public class Animal {
     public String category;
 
 
-
     public Animal() {
     }
 
@@ -66,6 +65,16 @@ public class Animal {
 
     public String getCategory() {
         return category;
+    }
+
+    public String shortDescription() {
+        String shortDesc;
+        if (description.length() < 100) {
+            shortDesc = description;
+        } else {
+            shortDesc = description.substring(0, 100);
+        }
+        return shortDesc;
     }
 
 }

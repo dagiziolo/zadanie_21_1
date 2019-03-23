@@ -56,11 +56,27 @@ public class AnimalController {
         return "addform";
     }
 
-    @PostMapping("/dodaj")
-    public String saveForm(@RequestParam String name, String description, String category, String imgUrl){
+    @PostMapping("/szczegoly")
+    public String saveForm(@RequestParam String name, String description, String category, String imgUrl, Model model){
         Animal animal = new Animal(name, description, imgUrl, category);
         animalRepository.add(animal);
-        return "add";
+        model.addAttribute("animal", animal);
+        return "details";
     }
 
+    @GetMapping("/edycja")
+    public String animalEdit(@RequestParam int id, Model model){
+        Animal animal = animalRepository.findById(id);
+        model.addAttribute("animal", animal);
+        List<String> allCategories = categoryRepository.findAll();
+        model.addAttribute("categories", allCategories);
+        return "edit";
+    }
+
+//    @PostMapping("/dodaj")
+//    public String saveForm(@RequestParam String name, String description, String category, String imgUrl){
+//        Animal animal = new Animal(name, description, imgUrl, category);
+//        animalRepository.add(animal);
+//        return "add";
+//    }
 }

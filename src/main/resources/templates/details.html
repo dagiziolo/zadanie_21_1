@@ -20,6 +20,7 @@
 
     <div class="container">
         <h2 th:text="${animal.name}">Azor</h2><br/>
+
         <p th:text="${animal.description}">Azor lubi biegać i ma 5 lat.</p>
         <div class="text-center">
             <img th:src="${animal.imgUrl}" class="rounded mx-auto d-block" alt="brak zdjęcia" width="500" height="500">
@@ -27,7 +28,12 @@
             <!--width="200" height="200"-->
 
         </div>
+        <div class="text-right">
+            <a th:href="@{'/edycja?id='+${animal.id}}">Edytuj</a>
+
+        </div><br/>
     </div>
+
 </div>
 </body>
 </html>
