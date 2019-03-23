@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:position="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj zwierzaka</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+<div class="container"><br/>
+    <header>
+        <h1 class="bg-secondary text-white text-center"><br/>Schronisko Reksio i Klakier<br/><br/></h1>
+    </header>
+    <div class="container">
+        <div class="row">
+            <a href="/">Powrót do listy</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <h2>Dodaj zwierzaka do adopcji</h2><br/>
+        </div>
+    </div>
+    <form th:action="@{/dodaj}" method="post" th:object="${animal}">
+        <div class="form-group row">
+            <label for="nameId" class="col-sm-2 col-form-label">Imię</label>
+            <div class="col-md-4">
+                <input type="text" name="name" class="form-control" id="nameId" placeholder="Imię"
+                       th:field="*{name}"><br>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="descriptionId" class="col-sm-2 col-form-label">Opis</label>
+            <div class="col-md-4">
+                <textarea name="description" class="form-control" id="descriptionId" placeholder="Opis"
+                          th:field="*{description}"></textarea><br>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="nameId" class="col-sm-2 col-form-label">Kategoria</label>
+            <div class="col-md-4">
+                <select th:field="*{category}" class="form-control" id="categoryId" placeholder="Kategoria"><br>
+                    <option th:each="cat: ${categories}" th:text="${cat}" th:value="${cat}">wybierz</option>
+                </select><br/>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="imgUrlId" class="col-sm-2 col-form-label">Zdjęcie</label>
+            <div class="col-md-4">
+                <input type="text" th:field="*{imgUrl}" class="form-control" id="imgUrlId" placeholder="Zdjęcie"><br>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-6" align="right">
+        <button type="submit" class="btn btn-primary col-sm-3" >Dodaj</button>
+        </div>
+        </div>
+
+</form>
+</div>
+</body>
+</html>

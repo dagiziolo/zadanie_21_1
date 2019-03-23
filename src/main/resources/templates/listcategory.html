@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Zwierzęta w danej kategorii</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="container"><br/>
+    <header>
+        <h1 class="bg-secondary text-white text-center"><br/>Schronisko Reksio i Klakier<br/><br/></h1>
+    </header>
+    <div class="container">
+        <div class="row">
+            <a href="/">Powrót do listy</a>
+        </div>
+    </div>
+    <nav class="container">
+        <div class="row">
+            <div class="d-flex flex-row bd-highlight mb-3">
+                <div class="p-2 bd-highlight">Kategotie</div>
+                <div class="p-2 bd-highlight">
+                    <a href="/rodzaj?category=Zwierzęta">Wszystkie</a></div>
+
+                <a th:each="cat:${allCategories}">
+                    <div class="p-2 bd-highlight">
+                        <a th:href="@{'/rodzaj?category='+${cat}}" th:text="${cat}">Koty</a>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <h2 th:text="${category}+' szukające domu'"><br/>Zwierzaki szukające domu</h2><br/>
+
+    <ul class="list-unstyled" th:remove="all-but-first">
+
+
+        <li th:each="animal:${animalCategory}">
+            <div class="row">
+                <div class="col-md-3">
+                    <a th:href="@{'/szczegoly?id='+${animal.id}}">
+                        <img th:src="${animal.imgUrl}"
+                             alt="brak zdjęcia" width="200" height="200">
+                    </a>
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <a th:href="@{'/szczegoly?id='+${animal.id}}"><br/>
+                            <h3 th:text="${animal.name}"></h3><br/></a>
+                    </div>
+                    <div class="row">
+                        <a th:href="@{'/szczegoly?id='+${animal.id}}"
+                           th:text="${animal.description.substring(0,100)}"></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <br/>
+            <hr>
+            <br/>
+        </li>
+    </ul>
+
+</div>
+</body>
+</html>
