@@ -10,37 +10,43 @@
 
 </head>
 <body style="background-color: whitesmoke">
-<div class="container"  style="background-color: linen">
+<div class="container" style="background-color: linen">
     <header>
         <!--<h1 class="bg-secondary text-white text-center"><br/>Schronisko Reksio i Klakier<br/><br/></h1>-->
-        <img th:src="4985392932_ca67a39f42_bv42.jpg" alt="nie można wstawić zdjęcia"  class="img-fluid">
+        <img th:src="4985392932_ca67a39f42_bv42.jpg" alt="nie można wstawić zdjęcia" class="img-fluid">
     </header>
-    <div class="container">
-        <div class="row">
-            <a href="/dodaj">Dodaj zwierzaka</a>
-        </div>
-    </div>
-
     <!--<div class="container">-->
         <div class="row">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="/rodzaj" tabindex="-1" aria-disabled="true">Kategotie</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/rodzaj?category=Zwierzęta">Wszystkie</a>
-                </li>
-                <a th:each="cat:${allCategories}">
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{'/rodzaj?category='+${cat}}" th:text="${cat}">Koty</a>
-                    </li>
-                </a>
-
-            </ul>
+            <div class="col-md-2">
+                <a href="/dodaj">Dodaj zwierzaka</a>
+            </div>
+            <div class="col-md-2">
+                <a href="/dodajkategorie">Dodaj kategorię</a>
+            </div>
         </div>
     <!--</div>-->
 
-    <br/><h2>Zwierzaki szukające domu</h2>
+    <!--<div class="container">-->
+    <div class="row">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link disabled" href="/rodzaj" tabindex="-1" aria-disabled="true">Kategotie</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/rodzaj?category=Zwierzęta">Wszystkie</a>
+            </li>
+            <a th:each="cat:${allCategories}">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/rodzaj?category='+${cat}}" th:text="${cat}">Koty</a>
+                </li>
+            </a>
+
+        </ul>
+    </div>
+    <!--</div>-->
+
+    <br/>
+    <h2>Zwierzaki szukające domu</h2>
     <a href="/listsort">Sortowanie<br/></a>
     <br/>
 

@@ -1,7 +1,6 @@
 package pl.ds.schronisko.repository;
 
 import org.springframework.stereotype.Repository;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +18,10 @@ public class CategoryRepository {
     public List<String> findAll() {
         return categories;
     }
-
+    public void add(String cat) {
+        if(!cat.equals(categories)){
+        categories.add(cat);
+        }
+    }
 
 }

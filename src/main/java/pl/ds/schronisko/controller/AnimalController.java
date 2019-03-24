@@ -26,23 +26,23 @@ public class AnimalController {
     @GetMapping("/")
     public String home(Model model) {
         List<Animal> allAnimals = animalRepository.findAll();
-        model.addAttribute("allAnimals",allAnimals);
+        model.addAttribute("allAnimals", allAnimals);
         List<String> allCategories = categoryRepository.findAll();
-        model.addAttribute("allCategories",allCategories);
+        model.addAttribute("allCategories", allCategories);
         return "home";
     }
 
     @GetMapping("/szczegoly")
-    public String animalDetails(@RequestParam int id, Model model){
+    public String animalDetails(@RequestParam int id, Model model) {
         Animal animal = animalRepository.findById(id);
         model.addAttribute("animal", animal);
         return "details";
     }
 
     @GetMapping("/rodzaj")
-    public String printAnimalCategory(@RequestParam String category , Model model){
+    public String printAnimalCategory(@RequestParam String category, Model model) {
         List<String> allCategories = categoryRepository.findAll();
-        model.addAttribute("allCategories",allCategories);
+        model.addAttribute("allCategories", allCategories);
 
         List<Animal> animalInCategory = animalRepository.getAnimalInCategory(category);
         model.addAttribute("animalCategory", animalInCategory);
@@ -51,7 +51,7 @@ public class AnimalController {
     }
 
     @GetMapping("/dodaj")
-    public String showForm(Model model){
+    public String showForm(Model model) {
         model.addAttribute("animal", new Animal());
         List<String> allCategories = categoryRepository.findAll();
         model.addAttribute("categories", allCategories);
@@ -59,7 +59,7 @@ public class AnimalController {
     }
 
     @PostMapping("/szczegoly")
-    public String saveForm(@RequestParam String name, String description, String category, String imgUrl, Model model){
+    public String saveForm(@RequestParam String name, String description, String category, String imgUrl, Model model) {
         Animal animal = new Animal(name, description, imgUrl, category);
         animalRepository.add(animal);
         model.addAttribute("animal", animal);
@@ -67,7 +67,7 @@ public class AnimalController {
     }
 
     @GetMapping("/edycja")
-    public String animalEdit(@RequestParam int id, Model model){
+    public String animalEdit(@RequestParam int id, Model model) {
         Animal animal = animalRepository.findById(id);
         model.addAttribute("animal", animal);
         List<String> allCategories = categoryRepository.findAll();
@@ -83,7 +83,7 @@ public class AnimalController {
 //    }
 
     @PostMapping("/edycja")
-    public String saveForm(@RequestParam int id, String name, String description, String category, String imgUrl, Model model){
+    public String saveForm(@RequestParam int id, String name, String description, String category, String imgUrl, Model model) {
         Animal newAnimal = new Animal(id, name, description, imgUrl, category);
         animalRepository.change(newAnimal, animalRepository.findById(newAnimal.id));
         return "addedit";
@@ -93,13 +93,37 @@ public class AnimalController {
     public String homeSort(Model model) {
         List<Animal> allAnimals = animalRepository.findAll();
         NameComparator nameComparator = new NameComparator();
-        Collections.sort(allAnimals,nameComparator );
-        model.addAttribute("allAnimals",allAnimals);
+        Collections.sort(allAnimals, nameComparator);
+        model.addAttribute("allAnimals", allAnimals);
         List<String> allCategories = categoryRepository.findAll();
-        model.addAttribute("allCategories",allCategories);
+        model.addAttribute("allCategories", allCategories);
         return "sort";
     }
 
+    @GetMapping("/dodajkategorie")
+    public String showFormCat(Model model) {
+        model.addAttribute("categories", new CategoryRepository());
+        return "addformcat";
+    }
+
+
+    @PostMapping("/dodajkategorie")
+    public String saveFormCat(@RequestParam String name) {
+        List<String> allCategories = categoryRepository.findAll();
+        int i =0 ;
+        for(String allCategory: allCategories){
+            if(name.equalsIgnoreCase(allCategory)){
+                i+=1;
+            }
+        }
+
+        if (i>0) {
+            return "error";
+        } else {
+            categoryRepository.add(name);
+            return "add";
+        }
+    }
 
 //    @GetMapping("/rodzaj/listsort")
 //    public String printAnimalCategorySort(Model model) {
