@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
-<div class="container"><br/>
-
+<body style="background-color: whitesmoke">
+<div class="container"  style="background-color: linen">
     <header>
-        <h1 class="bg-secondary text-white text-center"><br/>Schronisko Reksio i Klakier<br/><br/></h1>
+        <!--<h1 class="bg-secondary text-white text-center"><br/>Schronisko Reksio i Klakier<br/><br/></h1>-->
+        <img th:src="4985392932_ca67a39f42_bv42.jpg" alt="nie można wstawić zdjęcia"  class="img-fluid">
     </header>
     <div class="container">
         <div class="row">
@@ -18,11 +18,12 @@
         </div>
     </div>
 
-    <div class="container">
-        <h2 th:text="${animal.name}">Azor</h2><br/>
+    <!--<div class="container">-->
+        <br/><h2 th:text="${animal.name}">Azor</h2><br/>
 
         <p th:text="${animal.description}">Azor lubi biegać i ma 5 lat.</p>
         <div class="text-center">
+            <br/>
             <img th:src="${animal.imgUrl}" class="rounded mx-auto d-block" alt="brak zdjęcia" width="500" height="500">
             <br/>
             <!--width="200" height="200"-->
@@ -32,7 +33,7 @@
             <a th:href="@{'/edycja?id='+${animal.id}}">Edytuj</a>
 
         </div><br/>
-    </div>
+    <!--</div>-->
 
 </div>
 </body>

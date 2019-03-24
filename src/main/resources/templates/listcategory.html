@@ -10,32 +10,38 @@
 
 </head>
 <body>
-<div class="container"><br/>
+<body style="background-color: whitesmoke">
+<div class="container"  style="background-color: linen">
     <header>
-        <h1 class="bg-secondary text-white text-center"><br/>Schronisko Reksio i Klakier<br/><br/></h1>
+        <!--<h1 class="bg-secondary text-white text-center"><br/>Schronisko Reksio i Klakier<br/><br/></h1>-->
+        <img th:src="4985392932_ca67a39f42_bv42.jpg" alt="nie można wstawić zdjęcia"  class="img-fluid">
     </header>
     <div class="container">
         <div class="row">
             <a href="/">Powrót do listy</a>
         </div>
     </div>
-    <nav class="container">
-        <div class="row">
-            <div class="d-flex flex-row bd-highlight mb-3">
-                <div class="p-2 bd-highlight">Kategotie</div>
-                <div class="p-2 bd-highlight">
-                    <a href="/rodzaj?category=Zwierzęta">Wszystkie</a></div>
 
-                <a th:each="cat:${allCategories}">
-                    <div class="p-2 bd-highlight">
-                        <a th:href="@{'/rodzaj?category='+${cat}}" th:text="${cat}">Koty</a>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </nav>
+    <div class="row">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link disabled" href="/rodzaj" tabindex="-1" aria-disabled="true">Kategotie</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/rodzaj?category=Zwierzęta">Wszystkie</a>
+            </li>
+            <a th:each="cat:${allCategories}">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/rodzaj?category='+${cat}}" th:text="${cat}">Koty</a>
+                </li>
+            </a>
 
-    <h2 th:text="${category}+' szukające domu'"><br/>Zwierzaki szukające domu</h2><br/>
+        </ul>
+    </div>
+
+    <br/><h2 th:text="${category}+' szukające domu'">Zwierzaki szukające domu</h2>
+    <hr>
+    <br/>
 
     <ul class="list-unstyled" th:remove="all-but-first">
 
@@ -55,7 +61,7 @@
                     </div>
                     <div class="row">
                         <a th:href="@{'/szczegoly?id='+${animal.id}}"
-                           th:text="${animal.description.substring(0,100)}"></a>
+                           th:text="${animal.shortDescription()}"></a>
                     </div>
                 </div>
 

@@ -55,4 +55,12 @@ public class AnimalRepository {
         animals.add(animal);
     }
 
+    public void change(Animal animalNew, Animal animalOld) {
+        if(animalOld.id==animalNew.id && !animalOld.equals(animalNew)){
+            animalOld.name = animalNew.name;
+            animalOld.description = animalNew.description;
+            animalOld.category = animalNew.category;
+            animalOld.imgUrl = animalNew.imgUrl;
+        }
+   }
 }

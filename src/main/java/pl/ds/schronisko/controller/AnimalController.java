@@ -79,4 +79,11 @@ public class AnimalController {
 //        animalRepository.add(animal);
 //        return "add";
 //    }
+
+    @PostMapping("/edycja")
+    public String saveForm(@RequestParam int id, String name, String description, String category, String imgUrl, Model model){
+        Animal newAnimal = new Animal(id, name, description, imgUrl, category);
+        animalRepository.change(newAnimal, animalRepository.findById(newAnimal.id));
+        return "addedit";
+    }
 }

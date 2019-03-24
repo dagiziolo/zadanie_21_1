@@ -9,22 +9,31 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
-<body>
-<div class="container"><br/>
+<body style="background-color: whitesmoke">
+<div class="container"  style="background-color: linen">
     <header>
-        <h1 class="bg-secondary text-white text-center"><br/>Schronisko Reksio i Klakier<br/><br/></h1>
+        <!--<h1 class="bg-secondary text-white text-center"><br/>Schronisko Reksio i Klakier<br/><br/></h1>-->
+        <img th:src="4985392932_ca67a39f42_bv42.jpg" alt="nie można wstawić zdjęcia"  class="img-fluid">
     </header>
     <div class="container">
         <div class="row">
             <a href="/">Powrót do listy</a>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <h2>Edycja</h2><br/>
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <h2><br/>Edycja</h2>
+
+        <!--</div>-->
+    <!--</div>-->
+    <form th:action="@{/edycja}" method="post" th:object="${animal}">
+        <div class="form-group row">
+            <label for="Id" class="col-sm-2 col-form-label">Id</label>
+            <div class="col-md-4">
+                <input type="number" name="id" class="form-control" id="Id" placeholder="Id"
+                       th:field="*{id}" readonly><br>
+            </div>
         </div>
-    </div>
-    <form th:action="@{/szczegoly}" method="post" th:object="${animal}">
         <div class="form-group row">
             <label for="nameId" class="col-sm-2 col-form-label">Imię</label>
             <div class="col-md-4">
@@ -61,6 +70,7 @@
         </div>
 
     </form>
+    <br/>
 </div>
 </body>
 </html>
