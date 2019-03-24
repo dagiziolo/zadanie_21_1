@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Zwierzęta w danej kategorii</title>
+    <title>Strona glowna schroniska</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -17,10 +17,11 @@
     </header>
     <div class="container">
         <div class="row">
-            <a href="/">Powrót do listy</a>
+            <a href="/dodaj">Dodaj zwierzaka</a>
         </div>
     </div>
 
+    <!--<div class="container">-->
     <div class="row">
         <ul class="nav">
             <li class="nav-item">
@@ -37,17 +38,17 @@
 
         </ul>
     </div>
+    <!--</div>-->
 
-    <br/><h2 th:text="${category}+' szukające domu'">Zwierzaki szukające domu</h2>
-    <!--<a th:each="cat:${allCategories}" th:href="{'/rodzaj/listsort?category='+${cat}}">-->
-    <!--<a th:href="{'/rodzaj/listsort?category='+${cat}}">Sortowanie<br/></a>-->
-    <!--<a href="/listsort">Sortowanie<br/></a>-->
+    <br/><h2>Zwierzaki szukające domu</h2>
+    <a href="/listsort">Sortowanie<br/></a>
     <br/>
 
+    <!--<h2 style="background-color: aqua" ><br/>Zwierzaki szukające domu</h2><br/>-->
     <ul class="list-unstyled" th:remove="all-but-first">
 
 
-        <li th:each="animal:${animalCategory}">
+        <li th:each="animal:${allAnimals}">
             <div class="row">
                 <div class="col-md-3">
                     <a th:href="@{'/szczegoly?id='+${animal.id}}">
@@ -72,8 +73,17 @@
             <hr>
             <br/>
         </li>
+        <br/>
+        <li>
+            <a href="/azor">Azor</a></li>
+        <br/>
+        <li><a href="/latka">Łatka</a></li>
+        <br/>
+        <li><a href="/robak">Robak</a></li>
+        <br/>
     </ul>
 
 </div>
+
 </body>
 </html>

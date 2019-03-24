@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.ds.schronisko.model.Animal;
+import pl.ds.schronisko.model.NameComparator;
 import pl.ds.schronisko.repository.AnimalRepository;
 import pl.ds.schronisko.repository.CategoryRepository;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -86,4 +88,29 @@ public class AnimalController {
         animalRepository.change(newAnimal, animalRepository.findById(newAnimal.id));
         return "addedit";
     }
+
+    @GetMapping("/listsort")
+    public String homeSort(Model model) {
+        List<Animal> allAnimals = animalRepository.findAll();
+        NameComparator nameComparator = new NameComparator();
+        Collections.sort(allAnimals,nameComparator );
+        model.addAttribute("allAnimals",allAnimals);
+        List<String> allCategories = categoryRepository.findAll();
+        model.addAttribute("allCategories",allCategories);
+        return "sort";
+    }
+
+
+//    @GetMapping("/rodzaj/listsort")
+//    public String printAnimalCategorySort(Model model) {
+//        List<Animal> allAnimals = animalRepository.findAll();
+//        NameComparator nameComparator = new NameComparator();
+//        Collections.sort(allAnimals,nameComparator );
+//        model.addAttribute("allAnimals",allAnimals);
+//        List<String> allCategories = categoryRepository.findAll();
+//        model.addAttribute("allCategories",allCategories);
+//        return "sort";
+//    }
+//
+
 }
